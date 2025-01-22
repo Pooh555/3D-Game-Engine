@@ -12,6 +12,7 @@ public class Component extends JPanel {
         setBackground(Variables.BLACK); // set initial window background color
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Variables.RED); // set the color for the oval
