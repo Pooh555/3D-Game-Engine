@@ -23,7 +23,7 @@ public class Component extends JPanel {
 
     public Component() {
         setPreferredSize(windowSize); // set initial window size
-        setBackground(Variables.WHITE); // set initial window background color
+        setBackground(Variables.BLACK); // set initial window background color
         System.out.println("Components are set.");
     }
 
