@@ -27,9 +27,9 @@ public class DPolygon {
 
         // calculate new coordinates of all objects
         for (int i = 0; i < x.length; i++) {
-            newX[i] = 500+ multiplier * Calculator.CalculateObjectPositionX(main.Component.cameraPosition,
+            newX[i] = 800+ multiplier * Calculator.CalculateObjectPositionX(main.Component.cameraPosition,
                     main.Component.lookedPosition, x[i], y[i], z[i]);
-            newY[i] = 500+ multiplier * Calculator.CalculateObjectPositionY(main.Component.cameraPosition,
+            newY[i] = 800+ multiplier * Calculator.CalculateObjectPositionY(main.Component.cameraPosition,
                     main.Component.lookedPosition, x[i], y[i], z[i]);
         }
 
@@ -54,9 +54,9 @@ public class DPolygon {
 
         // calculate new coordinates of all objects
         for (int i = 0; i < x.length; i++) {
-            newX[i] = 500 + multiplier * Calculator.CalculateObjectPositionX(main.Component.cameraPosition,
+            newX[i] = 800 + multiplier * Calculator.CalculateObjectPositionX(main.Component.cameraPosition,
                     main.Component.lookedPosition, x[i], y[i], z[i]);
-            newY[i] = 500 + multiplier * Calculator.CalculateObjectPositionY(main.Component.cameraPosition,
+            newY[i] = 800 + multiplier * Calculator.CalculateObjectPositionY(main.Component.cameraPosition,
                     main.Component.lookedPosition, x[i], y[i], z[i]);
         }
 

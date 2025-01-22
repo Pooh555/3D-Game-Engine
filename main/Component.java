@@ -69,6 +69,14 @@ public class Component extends JPanel implements Runnable {
             new double[] { 0, 0, 0 ,0 }, Variables.RED);
         DPolygons[1] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
             new double[] { 3, 3, 3, 3 }, Variables.RED);
+        DPolygons[2] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 2, 0, 0, 2 },
+            new double[] { 0, 0, 3, 3 }, Variables.GREEN);
+        DPolygons[3] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 },
+            new double[] { 3, 3, 0, 0 }, Variables.GREEN);
+        DPolygons[4] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 2, 2, 2, 2 },
+            new double[] { 0, 0, 3, 3 }, Variables.BLUE);
+        DPolygons[5] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 },
+             new double[] { 3, 3, 0, 0 }, Variables.BLUE);
     }
 
     public void CreatePolygonObject() {
