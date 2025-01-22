@@ -12,7 +12,7 @@ public class Component extends JPanel {
     
     // game mechanism
     public static double[] cameraPosition = new double[]{10, 10, 10};
-    public static double[] lookedPosition = new double[]{0, 0, 0};
+    public static double[] lookedPosition = new double[]{5, 0, 0};
     
     // game objects
     public static int numberOfPolygons = 0; // number of polygons
@@ -23,14 +23,19 @@ public class Component extends JPanel {
     public Component() {
         setPreferredSize(windowSize); // set initial window size
         setBackground(Variables.BLACK); // set initial window background color
+        System.out.println("Components are set.");
     }
 
     public void CreatePolygonObject() {
         polygon1 = new PolygonObject(new double[]{10, 200, 10}, new double[]{5, 5, 5}, Variables.RED);
+        
+        System.out.println("New 2D polygon is created.");
     }
     
     public void CreateDPolygon() {
         dPolygon1 = new DPolygon(new double[]{2, 4, 2}, new double[]{2, 4, 6}, new double[]{10, 200, 400}, Variables.RED);
+    
+        System.out.println("New 3D polygon is created.");
     }
 
     @Override

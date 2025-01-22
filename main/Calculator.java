@@ -1,7 +1,7 @@
 package main;
 
 public class Calculator {
-    static double drawX, drawY; // for display purposes
+    static double drawX = 0, drawY = 0; // for display purposes
 
     public static double CalculateObjectPositionX(double[] cameraPosition, double[] lookedPosition, double x, double y, double z) {
         return drawX;
