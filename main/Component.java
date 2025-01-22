@@ -25,6 +25,8 @@ public class Component extends JPanel implements Runnable {
     // program mechanism
     public static double[] cameraPosition = INITIAL_CAMERA_POSITION;
     public static double[] lookedPosition = INITIAL_LOOKED_POSITION;
+    public static boolean[] keys = new boolean[10];
+    private static int frameCount = 0;
 
     // program objects
     public static int numberOfPolygons = 0, numberOfDPolygons = 0; // number of polygons
@@ -87,6 +89,12 @@ public class Component extends JPanel implements Runnable {
                 new double[] { 0, 0, 2, 2 }, BLUE);
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 },
                 new double[] { 0, 0, 2, 2 }, BLUE);
+
+        for (int i = -4; i < 5; i++)
+            for (int j = -4; j < 5; j++) {
+                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
+                new double[] { 0, 0, 0, 0 }, PURPLE);
+            }
     }
 
     @Override
@@ -156,6 +164,12 @@ public class Component extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // Always call super.paintComponent first
+
+        if (frameCount >= SENSITIVITY) {
+            Keyboard.control();
+            frameCount = 0;
+        } else
+            frameCount++;
 
         drawResizedImage(g, wallpaper);
 
