@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import static main.Main.*;
 public class Variables {
     // program system
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public static Dimension panelSize = window.getContentPane().getSize();
     public static int WIDTH = 960; // window's width
     public static int HEIGHT = 540; // window's height
     public static final int FPS = 360; // frames per second
@@ -33,5 +35,9 @@ public class Variables {
 
     public static void updateScreenSize() {
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    }
+
+    public static void updatePanelSize() {
+        screenSize = window.getContentPane().getSize();
     }
 }

@@ -164,6 +164,7 @@ public class Component extends JPanel implements Runnable {
     private void drawResizedImage(Graphics g, BufferedImage image) {
         // Update screen size to ensure it is current
         updateScreenSize();
+        updatePanelSize();
     
         // Original image size
         int imageWidth = image.getWidth();
