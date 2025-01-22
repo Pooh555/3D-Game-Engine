@@ -42,10 +42,10 @@ public class DPolygon {
 
         // calculate new coordinates of all objects (fix the center of rotation)
         for (int i = 0; i < x.length; i++) {
-            newX[i] = dx + (int) (screenSize.getWidth() / 2)
+            newX[i] = dx + (int) (getScreenWidth() / 2)
                     + scaleMultiplier * CalculateObjectPositionX(cameraPosition,
                             lookedPosition, x[i], y[i], z[i]);
-            newY[i] = dy + (int) (screenSize.getHeight() / 2)
+            newY[i] = dy + (int) (getScreenHeight() / 2)
                     + scaleMultiplier * CalculateObjectPositionY(cameraPosition,
                             lookedPosition, x[i], y[i], z[i]);
         }

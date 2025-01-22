@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import static main.Main.*;
+
 public class Variables {
     // program system
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,11 +35,35 @@ public class Variables {
     public static String wallpaperPath = "/res/wallpapers/girl_view_earth_from_space.jpg";
     public static BufferedImage wallpaper;
 
-    public static void updateScreenSize() {
+    public static void setScreenSize() {
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     }
 
-    public static void updatePanelSize() {
+    public static void setPanelSize() {
         screenSize = window.getContentPane().getSize();
+    }
+
+    public static Dimension getScreenSize() {
+        return screenSize;
+    }
+
+    public static double getScreenWidth() {
+        return screenSize.getWidth();
+    }
+
+    public static double getScreenHeight() {
+        return screenSize.getHeight();
+    }
+
+    public static Dimension getPanelSize() {
+        return panelSize;
+    }    
+
+    public static double getPanelWidth() {
+        return panelSize.getWidth();
+    }
+
+    public static double getPanelHeight() {
+        return panelSize.getHeight();
     }
 }
