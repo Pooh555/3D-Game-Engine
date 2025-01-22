@@ -16,6 +16,14 @@ public class Keyboard implements KeyListener {
         Vector verticalVector = new Vector(0, 0, 1);
         Vector sideVector = viewVector.crossProduct(verticalVector);
 
+        if (keys[0])
+            cameraPosition[1]--;
+        if (keys[1])
+            cameraPosition[1]++;
+        if (keys[2])
+            cameraPosition[0]--;
+        if (keys[3])
+            cameraPosition[0]++;
         if (keys[4]) {
             cameraPosition[0] += viewVector.x;
             cameraPosition[1] += viewVector.y;
