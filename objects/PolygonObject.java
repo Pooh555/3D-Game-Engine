@@ -18,7 +18,7 @@ public class PolygonObject {
         main.Component.numberOfPolygons++;
     }
 
-    public void drawPolygonObject(Graphics g) {
+    public void drawPolygon(Graphics g) {
         g.setColor(color); // set the polygon color
         g.fillPolygon(P);
         g.drawPolygon(P); // draw the polygon object

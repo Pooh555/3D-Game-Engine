@@ -20,12 +20,11 @@ public class Component extends JPanel implements Runnable {
     public static double[] lookedPosition = Variables.INITIAL_LOOKED_POSITION;
 
     // program objects
-    public static int numberOfPolygons = 0; // number of polygons
-    public static PolygonObject[] drawablePolygons = new PolygonObject[100]; // arrday of current polygons
+    public static int numberOfPolygons = 0, numberOfDPolygons = 0; // number of polygons
+    public static PolygonObject[] polygons = new PolygonObject[100]; // arrday of current 2D polygons
+    public static DPolygon[] DPolygons = new DPolygon[100]; // arrday of current 3D polygons
     private static PolygonObject polygon1; // 2D polygon object
-    private static DPolygon dPolygon1; // 3D polygon object
-    private static DPolygon dPolygon2 = new DPolygon(new double[] { 2, 4, 2 }, new double[] { 2, 4, 6 },
-            new double[] { 5, 5, 5 }, Variables.RED);
+    private static DPolygon DPolygon1; // 3D polygon object
 
     @Override
     public void run() {
@@ -64,6 +63,12 @@ public class Component extends JPanel implements Runnable {
         setFocusable(true); 
         requestFocusInWindow(); 
         System.out.println("A keyboard is detected.");
+
+        // test
+        DPolygons[0] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
+            new double[] { 0, 0, 0 ,0 }, Variables.RED);
+        DPolygons[1] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
+            new double[] { 3, 3, 3, 3 }, Variables.RED);
     }
 
     public void CreatePolygonObject() {
@@ -74,7 +79,7 @@ public class Component extends JPanel implements Runnable {
     }
 
     public void CreateDPolygon() {
-        dPolygon1 = new DPolygon(new double[] { 2, 4, 2 }, new double[] { 2, 4, 6 }, new double[] { 10, 200, 400 },
+        DPolygon1 = new DPolygon(new double[] { 2, 4, 2 }, new double[] { 2, 4, 6 }, new double[] { 10, 200, 400 },
                 Variables.RED);
 
         repaint();
@@ -84,14 +89,18 @@ public class Component extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        dPolygon2.updateDPolygon();
+        DPolygons[0].drawDPolygon();
         g.setColor(Variables.GREEN);
         g.drawString(System.nanoTime() + "", 20, 20);
 
         // System.out.println("Number of polygons: " + numberOfPolygons);
 
         for (int i = 0; i < numberOfPolygons; i++) {
-            drawablePolygons[i].drawPolygonObject(g);
+            polygons[i].drawPolygon(g);
+        }
+
+        for (int i = 0; i < numberOfDPolygons; i++) {
+            DPolygons[i].drawDPolygon();
         }
     }
 
