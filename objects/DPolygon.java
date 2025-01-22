@@ -40,10 +40,7 @@ public class DPolygon {
         double[] newX = new double[x.length];
         double[] newY = new double[y.length];
 
-        System.out.println(screenSize.getWidth());
-        System.out.println(screenSize.getHeight());
-
-        // calculate new coordinates of all objects
+        // calculate new coordinates of all objects (fix the center of rotation)
         for (int i = 0; i < x.length; i++) {
             newX[i] = dx + (int) (screenSize.getWidth() / 2)
                     + scaleMultiplier * CalculateObjectPositionX(cameraPosition,
