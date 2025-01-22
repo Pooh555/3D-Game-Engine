@@ -29,8 +29,8 @@ public class Component extends JPanel implements Runnable {
 
     // program objects
     public static int numberOfPolygons = 0, numberOfDPolygons = 0; // number of polygons
-    public static PolygonObject[] polygons = new PolygonObject[16384]; // arrday of current 2D polygons
-    public static DPolygon[] DPolygons = new DPolygon[16384]; // arrday of current 3D polygons
+    public static PolygonObject[] polygons = new PolygonObject[16777216]; // arrday of current 2D polygons
+    public static DPolygon[] DPolygons = new DPolygon[16777216]; // arrday of current 3D polygons
     private static int[] newOrder; // layers of objects with respect to the camera vision
 
     public Component() {
@@ -88,21 +88,22 @@ public class Component extends JPanel implements Runnable {
                 new double[] { 0, 0, 2, 2 }, BLUE);
 
         // temporary platform
-        for (int i = -10; i < 10; i++) 
-            for (int j = -10; j < 10; j++) {
-                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
-                new double[] { 0, 0, 0, 0 }, KELLY_GREEN); // top side
-                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
-                new double[] { -1, -1, -1, -1 }, DARK_BROWN); // bottom side
-                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i + 1, i + 1, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
-                new double[] { -1, -1, 0, 0 }, DARK_BROWN); // front side
-                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i , i }, new double[] { j, j + 1, j + 1, j },
-                new double[] { -1, -1, 0, 0 }, DARK_BROWN); // back side
-                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i + 1, i + 1 , i }, new double[] { j + 1, j + 1, j + 1, j + 1 },
-                new double[] { -1, -1, 0, 0 }, DARK_BROWN); // left side
-                DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i + 1, i + 1 , i }, new double[] { j, j, j, j },
-                new double[] { -1, -1, 0, 0 }, DARK_BROWN); // right side
-            }
+        for (int h = -2; h <= 0; h++)
+            for (int i = -6; i < 6; i++) 
+                for (int j = -6; j < 6; j++) {
+                    DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
+                    new double[] { h, h, h, h }, KELLY_GREEN); // top side
+                    DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
+                    new double[] { h - 1, h - 1, h - 1, h - 1 }, DARK_BROWN); // bottom side
+                    DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i + 1, i + 1, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
+                    new double[] { h - 1, h - 1, h, h }, DARK_BROWN); // front side
+                    DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i , i }, new double[] { j, j + 1, j + 1, j },
+                    new double[] { h - 1, h - 1, h, h }, DARK_BROWN); // back side
+                    DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i + 1, i + 1 , i }, new double[] { j + 1, j + 1, j + 1, j + 1 },
+                    new double[] { h - 1, h - 1, h, h }, DARK_BROWN); // left side
+                    DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i + 1, i + 1 , i }, new double[] { j, j, j, j },
+                    new double[] { h - 1, h - 1, h, h }, DARK_BROWN); // right side
+                }
     }
 
     @Override
