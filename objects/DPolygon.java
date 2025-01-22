@@ -33,21 +33,11 @@ public class DPolygon {
                     main.Component.lookedPosition, x[i], y[i], z[i]);
         }
 
-        // debugging
-        // System.out.println("3D Points:");
-        // for (int i = 0; i < x.length; i++) {
-        // System.out.println("x: " + x[i] + ", y: " + y[i] + ", z: " + z[i]);
-        // }
-        // System.out.println("Projected 2D Points:");
-        // for (int i = 0; i < x.length; i++) {
-        // System.out.println("newX: " + newX[i] + ", newY: " + newY[i]);
-        // }
-
         polygon = main.Component.numberOfPolygons;
         main.Component.polygons[main.Component.numberOfPolygons] = new PolygonObject(newX, newY, color);
     }
 
-    public void drawDPolygon() {
+    public void updateDPolygon() {
 
         double[] newX = new double[x.length];
         double[] newY = new double[y.length];

@@ -26,6 +26,29 @@ public class Component extends JPanel implements Runnable {
     private static PolygonObject polygon1; // 2D polygon object
     private static DPolygon DPolygon1; // 3D polygon object
 
+    public Component() {
+        setPreferredSize(windowSize);
+        setBackground(Variables.BLACK);
+        System.out.println("Components are set.");
+
+        addMouseMotionListener(mouse);
+        addMouseListener(mouse);
+        System.out.println("A mouse is detected.");
+
+        addKeyListener(keyboard);
+        setFocusable(true);
+        requestFocusInWindow();
+        System.out.println("A keyboard is detected.");
+
+        // test: cube
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, new double[] { 0, 0, 0, 0 }, Variables.RED);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, new double[] { 2, 2, 2, 2 }, Variables.RED);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 }, new double[] { 0, 0, 2, 2 }, Variables.GREEN);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 2, 2, 2, 2 }, new double[] { 0, 0, 2, 2 }, Variables.GREEN);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, Variables.BLUE);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, Variables.BLUE);
+    }
+
     @Override
     public void run() {
         // main program loop
@@ -50,35 +73,6 @@ public class Component extends JPanel implements Runnable {
         mainThread.start(); // calls the run() method
     }
 
-    public Component() {
-        setPreferredSize(windowSize); 
-        setBackground(Variables.BLACK);
-        System.out.println("Components are set.");
-
-        addMouseMotionListener(mouse);
-        addMouseListener(mouse);
-        System.out.println("A mouse is detected.");
-
-        addKeyListener(keyboard);
-        setFocusable(true); 
-        requestFocusInWindow(); 
-        System.out.println("A keyboard is detected.");
-
-        // test
-        DPolygons[0] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
-            new double[] { 0, 0, 0 ,0 }, Variables.RED);
-        DPolygons[1] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
-            new double[] { 3, 3, 3, 3 }, Variables.RED);
-        DPolygons[2] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 2, 0, 0, 2 },
-            new double[] { 0, 0, 3, 3 }, Variables.GREEN);
-        DPolygons[3] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 },
-            new double[] { 3, 3, 0, 0 }, Variables.GREEN);
-        DPolygons[4] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 2, 2, 2, 2 },
-            new double[] { 0, 0, 3, 3 }, Variables.BLUE);
-        DPolygons[5] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 },
-             new double[] { 3, 3, 0, 0 }, Variables.BLUE);
-    }
-
     public void CreatePolygonObject() {
         polygon1 = new PolygonObject(new double[] { 10, 200, 10 }, new double[] { 5, 5, 5 }, Variables.RED);
 
@@ -97,7 +91,7 @@ public class Component extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        DPolygons[0].drawDPolygon();
+        DPolygons[0].updateDPolygon();
         g.setColor(Variables.GREEN);
         g.drawString(System.nanoTime() + "", 20, 20);
 
@@ -108,7 +102,7 @@ public class Component extends JPanel implements Runnable {
         }
 
         for (int i = 0; i < numberOfDPolygons; i++) {
-            DPolygons[i].drawDPolygon();
+            DPolygons[i].updateDPolygon();
         }
     }
 

@@ -21,6 +21,7 @@ public class PolygonObject {
     public void drawPolygon(Graphics g) {
         g.setColor(color); // set the polygon color
         g.fillPolygon(P);
+        g.setColor(main.Variables.WHITE);
         g.drawPolygon(P); // draw the polygon object
     }
 }
