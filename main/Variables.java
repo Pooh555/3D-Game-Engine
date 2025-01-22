@@ -1,11 +1,14 @@
 package main;
 
 import java.awt.Color;
-
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 public class Variables {
     // program system
-    public static final int WIDTH = 960; // window's width
-    public static final int HEIGHT = 540; // window's height
+    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    public static int WIDTH = 960; // window's width
+    public static int HEIGHT = 540; // window's height
     public static final int FPS = 360; // frames per second
     public static final double TICK_INTERVAL = 1000000000 / FPS; // in nanosecond
     public static double lastRefresh = 0; // difference between the last tick and the current time
@@ -23,4 +26,12 @@ public class Variables {
     public static final Color YELLOW = new Color(255, 255, 0);
     public static final Color CYAN = new Color(0, 255, 255);
     public static final Color PURPLE = new Color(0, 255, 255);
+
+    // wallpaper
+    public static String wallpaperPath = "/res/wallpapers/your_name_1.jpg";
+    public static BufferedImage wallpaper;
+
+    public static void updateScreenSize() {
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    }
 }

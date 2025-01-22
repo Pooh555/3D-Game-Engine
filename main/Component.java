@@ -2,7 +2,10 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.util.Arrays;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import objects.DPolygon;
 import objects.PolygonObject;
@@ -41,6 +44,18 @@ public class Component extends JPanel implements Runnable {
         setFocusable(true);
         requestFocusInWindow();
         System.out.println("A keyboard is detected.");
+
+        // load background image
+        try (InputStream input = getClass().getResourceAsStream(Variables.wallpaperPath)) {
+            if (input == null)
+                throw new IllegalArgumentException("Background image not found at " + Variables.wallpaperPath);
+
+            Variables.wallpaper = ImageIO.read(input);
+
+            System.out.println("Wallpaper is loaded successfully");
+        } catch (Exception e) {
+            System.err.println("Failed to load background image: " + e.getMessage());
+        }
 
         // test: cube
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
@@ -123,22 +138,52 @@ public class Component extends JPanel implements Runnable {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        super.paintComponent(g); // Always call super.paintComponent first
+
+        drawResizedImage(g, Variables.wallpaper);
+
         DPolygons[0].updateDPolygon();
         g.setColor(Variables.GREEN);
         g.drawString(System.nanoTime() + "", 20, 20);
 
         // System.out.println("Number of polygons: " + numberOfPolygons);
-
+        
         for (int i = 0; i < numberOfDPolygons; i++) {
             DPolygons[i].updateDPolygon();
         }
 
         setOrder();
-        
         for (int i = 0; i < numberOfPolygons; i++) {
             polygons[newOrder[i]].drawPolygon(g);
         }
-    }
+    }   
 
+    private void drawResizedImage(Graphics g, BufferedImage image) {
+        // update screen size to ensure it is current
+        Variables.updateScreenSize();
+        
+        // original image size
+        int imageWidth = image.getWidth();
+        int imageHeight = image.getHeight();
+        double panelAspect = (double) Variables.screenSize.getWidth() / Variables.screenSize.getHeight();
+        double imageAspect = (double) imageWidth / imageHeight;
+    
+        int newWidth, newHeight;
+    
+        if (panelAspect > imageAspect) {
+            // Panel is wider than the image, so scale the width to match the window's width
+            newWidth = (int) Variables.screenSize.getWidth();
+            newHeight = (int) (imageHeight * ((double) newWidth / imageWidth));
+        } else {
+            // Panel is taller than the image, so scale the height to match the window's height
+            newHeight = (int) Variables.screenSize.getHeight();
+            newWidth = (int) (imageWidth * ((double) newHeight / imageHeight));
+        }
+    
+        // Draw the resized image to fit the entire panel
+        g.drawImage(image, 0, 0, newWidth, newHeight, this);
+    }
+    
+    
+    
 }
