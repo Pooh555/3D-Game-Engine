@@ -17,6 +17,6 @@ public class Vector {
     Vector crossProduct(Vector v) {
         Vector crossVector = new Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
 
-        return v;
+        return crossVector;
     }
 }

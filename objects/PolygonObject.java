@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 
 public class PolygonObject {
-    Polygon P = new Polygon();
-    Color color;
+    public Polygon P = new Polygon();
+    public Color color;
 
     public PolygonObject(double[] x, double[] y, Color color) {
         // initialize a polygon object
