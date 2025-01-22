@@ -14,9 +14,15 @@ public class Vector {
         }
     }
 
-    Vector crossProduct(Vector v) {
-        Vector crossVector = new Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
+    public Vector crossProduct(Vector v) {
+        return new Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
+    }
 
-        return crossVector;
+    public double dotProduct(Vector v) {
+        return this.x * v.x + this.y * v.y + this.z * v.z;
+    }    
+
+    public double magnitude() {
+        return Math.sqrt(x * x + y * y + z * z);
     }
 }
