@@ -60,6 +60,20 @@ public class Component extends JPanel implements Runnable {
             System.err.println("Failed to load background image: " + e.getMessage());
         }
 
+        // test: rectangular prism
+        // DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 3, 3 },
+        //         new double[] { 0, 0, 0, 0 }, RED);
+        // DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 3, 3 },
+        //         new double[] { 2, 2, 2, 2 }, RED);
+        // DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 },
+        //         new double[] { 0, 0, 2, 2 }, GREEN);
+        // DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 0, 0, 2 }, new double[] { 3, 3, 3, 3 },
+        //         new double[] { 0, 0, 2, 2 }, GREEN);
+        // DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 0, 3, 3, 0 },
+        //         new double[] { 0, 0, 2, 2 }, BLUE);
+        // DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 3, 3, 0 },
+        //         new double[] { 0, 0, 2, 2 }, BLUE);
+
         // test: cube
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
                 new double[] { 0, 0, 0, 0 }, RED);

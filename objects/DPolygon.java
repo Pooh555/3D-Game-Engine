@@ -33,14 +33,15 @@ public class DPolygon {
     }
 
     public void updateDPolygon() {
-        double dx = scaleMultiplier * CalculateObjectPositionX(cameraPosition, lookedPosition, lookedPosition[0],
+        double dx = - scaleMultiplier * CalculateObjectPositionX(cameraPosition, lookedPosition, lookedPosition[0],
                 lookedPosition[1], lookedPosition[2]);
-        double dy = scaleMultiplier * CalculateObjectPositionY(cameraPosition, lookedPosition, lookedPosition[0],
+        double dy = - scaleMultiplier * CalculateObjectPositionY(cameraPosition, lookedPosition, lookedPosition[0],
                 lookedPosition[1], lookedPosition[2]);
         double[] newX = new double[x.length];
         double[] newY = new double[y.length];
 
         System.out.println(screenSize.getWidth());
+        System.out.println(screenSize.getHeight());
 
         // calculate new coordinates of all objects
         for (int i = 0; i < x.length; i++) {
