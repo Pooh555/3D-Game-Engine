@@ -3,6 +3,7 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import static main.Component.*;
+import static main.Variables.SENSITIVITY;
 
 public class Keyboard implements KeyListener {
     @Override
@@ -17,7 +18,7 @@ public class Keyboard implements KeyListener {
         Vector sideVector = viewVector.crossProduct(verticalVector);
 
         if (keys[0])
-            cameraPosition[1]--;
+            cameraPosition[1] -= 1 / SENSITIVITY;
         if (keys[1])
             cameraPosition[1]++;
         if (keys[2])

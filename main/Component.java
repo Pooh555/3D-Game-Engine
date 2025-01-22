@@ -189,24 +189,23 @@ public class Component extends JPanel implements Runnable {
 
     private void drawResizedImage(Graphics g, BufferedImage image) {
         // Update screen size to ensure it is current
-        setScreenSize();
         setPanelSize();
     
         // Original image size
         int imageWidth = image.getWidth();
         int imageHeight = image.getHeight();
-        double panelAspect = (double) getScreenWidth() / getScreenHeight();
+        double panelAspect = (double) getPanelWidth() / getPanelHeight();
         double imageAspect = (double) imageWidth / imageHeight;
     
         int newWidth, newHeight;
     
         if (panelAspect > imageAspect) {
             // Panel is wider than the image, so scale the width to match the window's width
-            newWidth = (int) (getScreenWidth());
+            newWidth = (int) (getPanelWidth());
             newHeight = (int) (imageHeight * ((double) newWidth / imageWidth));
         } else {
             // Panel is taller than the image, so scale the height to match the window's height
-            newHeight = (int) (getScreenHeight());
+            newHeight = (int) (getPanelHeight());
             newWidth = (int) (imageWidth * ((double) newHeight / imageHeight));
         }
     

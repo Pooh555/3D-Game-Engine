@@ -8,7 +8,8 @@ import static main.Main.*;
 
 public class Variables {
     // program system
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    @SuppressWarnings("FieldMayBeFinal")
     private static Dimension panelSize = window.getContentPane().getSize();
     public static final int INITIAL_WIDTH = 960; // window's width
     public static final int INITIAL_HEIGHT = 540; // window's height
@@ -19,7 +20,7 @@ public class Variables {
     // program mechanisms
     public static final double[] INITIAL_CAMERA_POSITION = new double[] { 10, 10, 10 };
     public static final double[] INITIAL_LOOKED_POSITION = new double[] { 1, 1, 1.5 };
-    public static final int SENSITIVITY = FPS/70; // FPS: lowest, 1: highest
+    public static final int SENSITIVITY = 10; // 0: lowest, 10: higher
 
     // colors
     public static final Color BLACK = new Color(0, 0, 0);
@@ -35,12 +36,8 @@ public class Variables {
     public static String wallpaperPath = "/res/wallpapers/girl_view_earth_from_space.jpg";
     public static BufferedImage wallpaper;
 
-    public static void setScreenSize() {
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    }
-
     public static void setPanelSize() {
-        screenSize = window.getContentPane().getSize();
+        panelSize = window.getContentPane().getSize();
     }
 
     public static Dimension getScreenSize() {
