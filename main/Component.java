@@ -174,8 +174,6 @@ public class Component extends JPanel implements Runnable {
         drawResizedImage(g, wallpaper);
 
         DPolygons[0].updateDPolygon();
-        g.setColor(GREEN);
-        g.drawString(System.nanoTime() + "", 20, 20);
 
         // System.out.println("Number of polygons: " + numberOfPolygons);
         
