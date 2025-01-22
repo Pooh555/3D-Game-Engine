@@ -89,6 +89,7 @@ public class Component extends JPanel implements Runnable {
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 },
                 new double[] { 0, 0, 2, 2 }, BLUE);
 
+        // temporary platform
         for (int i = -4; i < 5; i++)
             for (int j = -4; j < 5; j++) {
                 DPolygons[numberOfDPolygons] = new DPolygon(new double[] { i, i, i + 1, i + 1 }, new double[] { j, j + 1, j + 1, j },
@@ -165,7 +166,7 @@ public class Component extends JPanel implements Runnable {
         super.paintComponent(g); // Always call super.paintComponent first
 
         Keyboard.control();
-        
+
         drawResizedImage(g, wallpaper);
 
         DPolygons[0].updateDPolygon();
