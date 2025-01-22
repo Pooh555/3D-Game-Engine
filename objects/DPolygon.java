@@ -38,7 +38,6 @@ public class DPolygon {
     }
 
     public void updateDPolygon() {
-
         double[] newX = new double[x.length];
         double[] newY = new double[y.length];
 
@@ -50,6 +49,7 @@ public class DPolygon {
                     main.Component.lookedPosition, x[i], y[i], z[i]);
         }
 
+        // the total number of polygons remain unchanged
         main.Component.polygons[polygon] = new PolygonObject(newX, newY, color);
         main.Component.numberOfPolygons--;
     }
