@@ -31,8 +31,6 @@ public class Component extends JPanel implements Runnable {
     public static int numberOfPolygons = 0, numberOfDPolygons = 0; // number of polygons
     public static PolygonObject[] polygons = new PolygonObject[100]; // arrday of current 2D polygons
     public static DPolygon[] DPolygons = new DPolygon[100]; // arrday of current 3D polygons
-    private static PolygonObject polygon1; // 2D polygon object
-    private static DPolygon DPolygon1; // 3D polygon object
     private static int[] newOrder; // layers of objects with respect to the camera vision
 
     public Component() {
@@ -119,21 +117,6 @@ public class Component extends JPanel implements Runnable {
     public void launch() {
         mainThread = new Thread(this); // initiate a new thread
         mainThread.start(); // calls the run() method
-    }
-
-    public void CreatePolygon() {
-        polygon1 = new PolygonObject(new double[] { 10, 200, 10 }, new double[] { 5, 5, 5 }, RED);
-
-        repaint();
-        System.out.println("New 2D polygon is created.");
-    }
-
-    public void CreateDPolygon() {
-        DPolygon1 = new DPolygon(new double[] { 2, 4, 2 }, new double[] { 2, 4, 6 }, new double[] { 10, 200, 400 },
-                RED);
-
-        repaint();
-        System.out.println("New 3D polygon is created.");
     }
 
     private void setOrder() {
