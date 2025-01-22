@@ -20,7 +20,7 @@ public class Variables {
     // program mechanisms
     public static final double[] INITIAL_CAMERA_POSITION = new double[] { 10, 10, 10 };
     public static final double[] INITIAL_LOOKED_POSITION = new double[] { 1, 1, 1.5 };
-    public static final int SENSITIVITY = 10; // 0: lowest, 10: higher
+    public static final int SENSITIVITY = 100; // 0: lowest, 10: higher
 
     // colors
     public static final Color BLACK = new Color(0, 0, 0);

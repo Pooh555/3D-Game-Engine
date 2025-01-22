@@ -18,44 +18,44 @@ public class Keyboard implements KeyListener {
         Vector sideVector = viewVector.crossProduct(verticalVector);
 
         if (keys[0])
-            cameraPosition[1] -= 1 / SENSITIVITY;
+            cameraPosition[1] -= (double)(1) / SENSITIVITY;
         if (keys[1])
-            cameraPosition[1]++;
+            cameraPosition[1] += (double)(1) / SENSITIVITY;
         if (keys[2])
-            cameraPosition[0]--;
+            cameraPosition[0] -= (double)(1) / SENSITIVITY;
         if (keys[3])
-            cameraPosition[0]++;
+            cameraPosition[0] += (double)(1) / SENSITIVITY;
         if (keys[4]) {
-            cameraPosition[0] += viewVector.x;
-            cameraPosition[1] += viewVector.y;
-            cameraPosition[2] += viewVector.z;
-            lookedPosition[0] += viewVector.x;
-            lookedPosition[1] += viewVector.y;
-            lookedPosition[2] += viewVector.z;
+            cameraPosition[0] += viewVector.x / SENSITIVITY;
+            cameraPosition[1] += viewVector.y / SENSITIVITY;
+            cameraPosition[2] += viewVector.z / SENSITIVITY;
+            lookedPosition[0] += viewVector.x / SENSITIVITY;
+            lookedPosition[1] += viewVector.y / SENSITIVITY;
+            lookedPosition[2] += viewVector.z / SENSITIVITY;
         }
         if (keys[5]) {
-            cameraPosition[0] -= viewVector.x;
-            cameraPosition[1] -= viewVector.y;
-            cameraPosition[2] -= viewVector.z;
-            lookedPosition[0] -= viewVector.x;
-            lookedPosition[1] -= viewVector.y;
-            lookedPosition[2] -= viewVector.z;
+            cameraPosition[0] -= viewVector.x / SENSITIVITY;
+            cameraPosition[1] -= viewVector.y / SENSITIVITY;
+            cameraPosition[2] -= viewVector.z / SENSITIVITY;
+            lookedPosition[0] -= viewVector.x / SENSITIVITY;
+            lookedPosition[1] -= viewVector.y / SENSITIVITY;
+            lookedPosition[2] -= viewVector.z / SENSITIVITY;
         }
         if (keys[6]) {
-            cameraPosition[0] += sideVector.x;
-            cameraPosition[1] += sideVector.y;
-            cameraPosition[2] += sideVector.z;
-            lookedPosition[0] += sideVector.x;
-            lookedPosition[1] += sideVector.y;
-            lookedPosition[2] += sideVector.z;
+            cameraPosition[0] += sideVector.x / SENSITIVITY;
+            cameraPosition[1] += sideVector.y / SENSITIVITY;
+            cameraPosition[2] += sideVector.z / SENSITIVITY;
+            lookedPosition[0] += sideVector.x / SENSITIVITY;
+            lookedPosition[1] += sideVector.y / SENSITIVITY;
+            lookedPosition[2] += sideVector.z / SENSITIVITY;
         }
         if (keys[7]) {
-            cameraPosition[0] -= sideVector.x;
-            cameraPosition[1] -= sideVector.y;
-            cameraPosition[2] -= sideVector.z;
-            lookedPosition[0] -= sideVector.x;
-            lookedPosition[1] -= sideVector.y;
-            lookedPosition[2] -= sideVector.z;
+            cameraPosition[0] -= sideVector.x / SENSITIVITY;
+            cameraPosition[1] -= sideVector.y / SENSITIVITY;
+            cameraPosition[2] -= sideVector.z / SENSITIVITY;
+            lookedPosition[0] -= sideVector.x / SENSITIVITY;
+            lookedPosition[1] -= sideVector.y / SENSITIVITY;
+            lookedPosition[2] -= sideVector.z / SENSITIVITY;
         }
     }
 

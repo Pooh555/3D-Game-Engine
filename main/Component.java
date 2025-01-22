@@ -26,7 +26,6 @@ public class Component extends JPanel implements Runnable {
     public static double[] cameraPosition = INITIAL_CAMERA_POSITION;
     public static double[] lookedPosition = INITIAL_LOOKED_POSITION;
     public static boolean[] keys = new boolean[10];
-    private static int frameCount = 0;
 
     // program objects
     public static int numberOfPolygons = 0, numberOfDPolygons = 0; // number of polygons
@@ -165,12 +164,8 @@ public class Component extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // Always call super.paintComponent first
 
-        if (frameCount >= SENSITIVITY) {
-            Keyboard.control();
-            frameCount = 0;
-        } else
-            frameCount++;
-
+        Keyboard.control();
+        
         drawResizedImage(g, wallpaper);
 
         DPolygons[0].updateDPolygon();
