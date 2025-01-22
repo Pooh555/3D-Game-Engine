@@ -3,8 +3,18 @@ package main;
 import java.awt.Color;
 
 public class Variables {
-    public static int WIDTH = 960; // window's width
-    public static int HEIGHT = 540; // window's height
+    // program system
+    public static final int WIDTH = 960; // window's width
+    public static final int HEIGHT = 540; // window's height
+    public static final int FPS = 360; // frames per second
+    public static final double TICK_INTERVAL = 1000000000 / FPS; // in nanosecond
+    public static double lastRefresh = 0; // difference between the last tick and the current time
+
+    // program mechanisms
+    public static final double[] INITIAL_CAMERA_POSITION = new double[] { 10, 10, 10 };
+    public static final double[] INITIAL_LOOKED_POSITION = new double[] { 5, 0, 0 };
+
+    // colors
     public static final Color BLACK = new Color(0, 0, 0);
     public static final Color WHITE = new Color(255, 255, 255);
     public static final Color RED = new Color(255, 0, 0);
