@@ -1,7 +1,6 @@
 package objects;
 
 import java.awt.Color;
-import main.Calculator;
 import static main.Calculator.*;
 import static main.Component.*;
 import static main.Variables.*;
@@ -34,18 +33,18 @@ public class DPolygon {
     }
 
     public void updateDPolygon() {
-        double dx = CalculateObjectPositionX(cameraPosition, lookedPosition, lookedPosition[0], lookedPosition[1], lookedPosition[2]);
-        double dy = CalculateObjectPositionY(cameraPosition, lookedPosition, lookedPosition[0], lookedPosition[1], lookedPosition[2]);
+        double dx = scaleMultiplier * CalculateObjectPositionX(cameraPosition, lookedPosition, lookedPosition[0], lookedPosition[1], lookedPosition[2]);
+        double dy = scaleMultiplier * CalculateObjectPositionY(cameraPosition, lookedPosition, lookedPosition[0], lookedPosition[1], lookedPosition[2]);
         double[] newX = new double[x.length];
         double[] newY = new double[y.length];
 
         // calculate new coordinates of all objects
         for (int i = 0; i < x.length; i++) {
-            newX[i] = (int) (screenSize.getWidth() / 2)
-                    + scaleMultiplier * Calculator.CalculateObjectPositionX(cameraPosition,
+            newX[i] = dx + (int) (screenSize.getWidth() / 2)
+                    + scaleMultiplier * CalculateObjectPositionX(cameraPosition,
                             lookedPosition, x[i], y[i], z[i]);
-            newY[i] = (int) (screenSize.getHeight() / 2)
-                    + scaleMultiplier * Calculator.CalculateObjectPositionY(cameraPosition,
+            newY[i] = dy + (int) (screenSize.getHeight() / 2)
+                    + scaleMultiplier * CalculateObjectPositionY(cameraPosition,
                             lookedPosition, x[i], y[i], z[i]);
         }
 

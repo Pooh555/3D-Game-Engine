@@ -15,7 +15,7 @@ import objects.PolygonObject;
 
 public class Component extends JPanel implements Runnable {
     // program system
-    public static Dimension windowSize = new Dimension(WIDTH, HEIGHT); // window size
+    public static Dimension windowSize = new Dimension(Variables.WIDTH, Variables.HEIGHT); // window size
     Thread mainThread; // main game thread
 
     // devices
