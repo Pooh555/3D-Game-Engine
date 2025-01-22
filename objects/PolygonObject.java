@@ -7,6 +7,7 @@ import java.awt.Polygon;
 public class PolygonObject {
     public Polygon P = new Polygon();
     public Color color;
+    public double averageDistance = 0;
 
     public PolygonObject(double[] x, double[] y, Color color) {
         // initialize a polygon object

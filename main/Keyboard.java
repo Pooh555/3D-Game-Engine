@@ -12,7 +12,7 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key Pressed: " + KeyEvent.getKeyText(keyCode));
+        System.out.println("Key pressed: " + KeyEvent.getKeyText(keyCode));
 
         switch (keyCode) {
             case KeyEvent.VK_UP -> Component.cameraPosition[1]++; // Move up
@@ -25,6 +25,6 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key Released: " + KeyEvent.getKeyText(keyCode));
+        System.out.println("Key released: " + KeyEvent.getKeyText(keyCode));
     }
 }

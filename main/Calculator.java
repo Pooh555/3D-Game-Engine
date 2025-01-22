@@ -1,7 +1,7 @@
 package main;
 
 public class Calculator {
-    static double drawX = 0, drawY = 0; // for display purposes
+    private static double drawX = 0, drawY = 0;
 
     public static double CalculateObjectPositionX(double[] cameraPosition, double[] lookedPosition, double x, double y, double z) {
         setValues(cameraPosition, lookedPosition, x, y, z);
@@ -25,7 +25,7 @@ public class Calculator {
         // computing projections point
         double t = ((viewVector.x * lookedPosition[0] + viewVector.y * lookedPosition[1] + viewVector.z * lookedPosition[2])
                     - (viewVector.x * cameraPosition[0] + viewVector.y * cameraPosition[1] + viewVector.z * cameraPosition[2]))
-                    / (viewVector.x * viewToPoint.x + viewVector.y * viewToPoint.y + viewVector.z * viewToPoint.z); // parameter used to compute the intersection point between viewVector and viewToPoint
+                    / (viewVector.x * viewToPoint.x + viewVector.y * viewToPoint.y + viewVector.z * viewToPoint.z); // parameter used to compute the intersection point between viewVector and viewToPoint (how far away the object's plane is to the camera)
     
         // transforming 3D point into a 2D point
         x = cameraPosition[0] + viewToPoint.x * t;

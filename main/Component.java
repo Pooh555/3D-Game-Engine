@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.util.Arrays;
 import javax.swing.JPanel;
 import objects.DPolygon;
 import objects.PolygonObject;
@@ -25,6 +26,7 @@ public class Component extends JPanel implements Runnable {
     public static DPolygon[] DPolygons = new DPolygon[100]; // arrday of current 3D polygons
     private static PolygonObject polygon1; // 2D polygon object
     private static DPolygon DPolygon1; // 3D polygon object
+    private static int[] newOrder; // layers of objects with respect to the camera vision
 
     public Component() {
         setPreferredSize(windowSize);
@@ -41,12 +43,18 @@ public class Component extends JPanel implements Runnable {
         System.out.println("A keyboard is detected.");
 
         // test: cube
-        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, new double[] { 0, 0, 0, 0 }, Variables.RED);
-        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, new double[] { 2, 2, 2, 2 }, Variables.RED);
-        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 }, new double[] { 0, 0, 2, 2 }, Variables.GREEN);
-        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 2, 2, 2, 2 }, new double[] { 0, 0, 2, 2 }, Variables.GREEN);
-        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, Variables.BLUE);
-        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 }, Variables.BLUE);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
+                new double[] { 0, 0, 0, 0 }, Variables.RED);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
+                new double[] { 2, 2, 2, 2 }, Variables.RED);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 },
+                new double[] { 0, 0, 2, 2 }, Variables.GREEN);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 0, 0, 2 }, new double[] { 2, 2, 2, 2 },
+                new double[] { 0, 0, 2, 2 }, Variables.GREEN);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 0, 2, 2, 0 },
+                new double[] { 0, 0, 2, 2 }, Variables.BLUE);
+        DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 },
+                new double[] { 0, 0, 2, 2 }, Variables.BLUE);
     }
 
     @Override
@@ -73,7 +81,7 @@ public class Component extends JPanel implements Runnable {
         mainThread.start(); // calls the run() method
     }
 
-    public void CreatePolygonObject() {
+    public void CreatePolygon() {
         polygon1 = new PolygonObject(new double[] { 10, 200, 10 }, new double[] { 5, 5, 5 }, Variables.RED);
 
         repaint();
@@ -88,6 +96,31 @@ public class Component extends JPanel implements Runnable {
         System.out.println("New 3D polygon is created.");
     }
 
+    private void setOrder() {
+        double[] k = new double[numberOfPolygons];
+        newOrder = new int[numberOfPolygons];
+        Integer[] indices = new Integer[numberOfPolygons];
+
+        // fill k and newOrder arrays
+        for (int i = 0; i < numberOfPolygons; i++) {
+            k[i] = polygons[i].averageDistance;
+            newOrder[i] = i;
+        }
+
+        // create an array of indices and sort it based on k values
+        for (int i = 0; i < numberOfPolygons; i++) {
+            indices[i] = i;
+        }
+
+        // sort indices based on k values using a lambda comparator
+        Arrays.sort(indices, (a, b) -> Double.compare(k[b], k[a]));
+
+        // update newOrder with sorted indices
+        for (int i = 0; i < numberOfPolygons; i++) {
+            newOrder[i] = indices[i];
+        }
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -97,12 +130,14 @@ public class Component extends JPanel implements Runnable {
 
         // System.out.println("Number of polygons: " + numberOfPolygons);
 
-        for (int i = 0; i < numberOfPolygons; i++) {
-            polygons[i].drawPolygon(g);
-        }
-
         for (int i = 0; i < numberOfDPolygons; i++) {
             DPolygons[i].updateDPolygon();
+        }
+
+        setOrder();
+        
+        for (int i = 0; i < numberOfPolygons; i++) {
+            polygons[newOrder[i]].drawPolygon(g);
         }
     }
 
