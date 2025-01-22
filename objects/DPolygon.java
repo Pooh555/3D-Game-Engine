@@ -31,14 +31,14 @@ public class DPolygon {
         }
 
         // debugging
-        System.out.println("3D Points:");
-        for (int i = 0; i < x.length; i++) {
-            System.out.println("x: " + x[i] + ", y: " + y[i] + ", z: " + z[i]);
-        }
-        System.out.println("Projected 2D Points:");
-        for (int i = 0; i < x.length; i++) {
-            System.out.println("newX: " + newX[i] + ", newY: " + newY[i]);
-        }
+        // System.out.println("3D Points:");
+        // for (int i = 0; i < x.length; i++) {
+        //     System.out.println("x: " + x[i] + ", y: " + y[i] + ", z: " + z[i]);
+        // }
+        // System.out.println("Projected 2D Points:");
+        // for (int i = 0; i < x.length; i++) {
+        //     System.out.println("newX: " + newX[i] + ", newY: " + newY[i]);
+        // }
 
         main.Component.drawablePolygons[main.Component.numberOfPolygons] = new PolygonObject(newX, newY, color);
     }

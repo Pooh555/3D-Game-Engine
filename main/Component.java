@@ -53,8 +53,6 @@ public class Component extends JPanel {
 
         for (int i = 0; i < numberOfPolygons; i++) {
             drawablePolygons[i].drawPolygonObject(g);
-            
-            System.out.println(drawablePolygons[i].color);
         }
     }
 
