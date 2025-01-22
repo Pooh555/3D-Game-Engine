@@ -8,8 +8,8 @@ import static main.Main.*;
 
 public class Variables {
     // program system
-    public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public static Dimension panelSize = window.getContentPane().getSize();
+    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static Dimension panelSize = window.getContentPane().getSize();
     public static int WIDTH = 960; // window's width
     public static int HEIGHT = 540; // window's height
     public static final int FPS = 2160; // frames per second

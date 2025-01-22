@@ -206,7 +206,7 @@ public class Component extends JPanel implements Runnable {
             newHeight = (int) (imageHeight * ((double) newWidth / imageWidth));
         } else {
             // Panel is taller than the image, so scale the height to match the window's height
-            newHeight = (int) (getScreenWidth());
+            newHeight = (int) (getScreenHeight());
             newWidth = (int) (imageWidth * ((double) newHeight / imageHeight));
         }
     
