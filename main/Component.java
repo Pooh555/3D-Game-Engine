@@ -9,8 +9,9 @@ import objects.PolygonObject;
 public class Component extends JPanel implements Runnable {
     // game system
     public static Dimension windowSize = new Dimension(Variables.WIDTH, Variables.HEIGHT); // window size
-    private static int FPS = 360; // frames per second
-    private static double tickInterval = 1000000000/FPS, lastRefresh = 0; // in nanosecond
+    private static final int FPS = 360; // frames per second
+    private static final double TICK_INTERVAL = 1000000000/FPS; // in nanosecond
+    private static double lastRefresh = 0; // difference between the last tick and the current time
     Thread mainThread; // main game thread
 
     // game mechanism
@@ -26,15 +27,14 @@ public class Component extends JPanel implements Runnable {
 
     @Override
     public void run() {
-        // game loop
-        double lastRefresh = 0; // difference between the last tick and the current time
+        // main program loop
         long previousTickTime = System.nanoTime(); // time of the last tick
         long currentTime; // current time
 
         while (mainThread != null) {
             currentTime = System.nanoTime();
 
-            lastRefresh += (currentTime - previousTickTime) / tickInterval;
+            lastRefresh += (currentTime - previousTickTime) / TICK_INTERVAL;
             previousTickTime = currentTime;
 
             if (lastRefresh >= 1) {
