@@ -15,7 +15,7 @@ public class Variables {
 
     // program mechanisms
     public static final double[] INITIAL_CAMERA_POSITION = new double[] { 10, 10, 10 };
-    public static final double[] INITIAL_LOOKED_POSITION = new double[] { 5, 0, 0 };
+    public static final double[] INITIAL_LOOKED_POSITION = new double[] { 1, 1, 1.5 };
 
     // colors
     public static final Color BLACK = new Color(0, 0, 0);
