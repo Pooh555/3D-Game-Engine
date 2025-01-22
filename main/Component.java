@@ -9,12 +9,13 @@ import java.io.InputStream;
 import java.util.Arrays;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import static main.Variables.*;
 import objects.DPolygon;
 import objects.PolygonObject;
 
 public class Component extends JPanel implements Runnable {
     // program system
-    public static Dimension windowSize = new Dimension(Variables.WIDTH, Variables.HEIGHT); // window size
+    public static Dimension windowSize = new Dimension(WIDTH, HEIGHT); // window size
     Thread mainThread; // main game thread
 
     // devices
@@ -22,8 +23,8 @@ public class Component extends JPanel implements Runnable {
     Keyboard keyboard = new Keyboard(); // new keyboard instance
 
     // program mechanism
-    public static double[] cameraPosition = Variables.INITIAL_CAMERA_POSITION;
-    public static double[] lookedPosition = Variables.INITIAL_LOOKED_POSITION;
+    public static double[] cameraPosition = INITIAL_CAMERA_POSITION;
+    public static double[] lookedPosition = INITIAL_LOOKED_POSITION;
 
     // program objects
     public static int numberOfPolygons = 0, numberOfDPolygons = 0; // number of polygons
@@ -35,7 +36,7 @@ public class Component extends JPanel implements Runnable {
 
     public Component() {
         setPreferredSize(windowSize);
-        setBackground(Variables.BLACK);
+        setBackground(BLACK);
         System.out.println("Components are set.");
 
         addMouseMotionListener(mouse);
@@ -48,11 +49,11 @@ public class Component extends JPanel implements Runnable {
         System.out.println("A keyboard is detected.");
 
         // load background image
-        try (InputStream input = getClass().getResourceAsStream(Variables.wallpaperPath)) {
+        try (InputStream input = getClass().getResourceAsStream(wallpaperPath)) {
             if (input == null)
-                throw new IllegalArgumentException("Background image not found at " + Variables.wallpaperPath);
+                throw new IllegalArgumentException("Background image not found at " + wallpaperPath);
 
-            Variables.wallpaper = ImageIO.read(input);
+            wallpaper = ImageIO.read(input);
 
             System.out.println("Wallpaper is loaded successfully");
         } catch (Exception e) {
@@ -61,17 +62,17 @@ public class Component extends JPanel implements Runnable {
 
         // test: cube
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
-                new double[] { 0, 0, 0, 0 }, Variables.RED);
+                new double[] { 0, 0, 0, 0 }, RED);
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 2, 2 },
-                new double[] { 2, 2, 2, 2 }, Variables.RED);
+                new double[] { 2, 2, 2, 2 }, RED);
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 2, 2, 0 }, new double[] { 0, 0, 0, 0 },
-                new double[] { 0, 0, 2, 2 }, Variables.GREEN);
+                new double[] { 0, 0, 2, 2 }, GREEN);
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 0, 0, 2 }, new double[] { 2, 2, 2, 2 },
-                new double[] { 0, 0, 2, 2 }, Variables.GREEN);
+                new double[] { 0, 0, 2, 2 }, GREEN);
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 0, 0, 0, 0 }, new double[] { 0, 2, 2, 0 },
-                new double[] { 0, 0, 2, 2 }, Variables.BLUE);
+                new double[] { 0, 0, 2, 2 }, BLUE);
         DPolygons[numberOfDPolygons] = new DPolygon(new double[] { 2, 2, 2, 2 }, new double[] { 0, 2, 2, 0 },
-                new double[] { 0, 0, 2, 2 }, Variables.BLUE);
+                new double[] { 0, 0, 2, 2 }, BLUE);
     }
 
     @Override
@@ -83,12 +84,12 @@ public class Component extends JPanel implements Runnable {
         while (mainThread != null) {
             currentTime = System.nanoTime();
 
-            Variables.lastRefresh += (currentTime - previousTickTime) / Variables.TICK_INTERVAL;
+            lastRefresh += (currentTime - previousTickTime) / TICK_INTERVAL;
             previousTickTime = currentTime;
 
-            if (Variables.lastRefresh >= 1) {
+            if (lastRefresh >= 1) {
                 repaint();
-                Variables.lastRefresh--;
+                lastRefresh--;
             }
         }
     }
@@ -99,7 +100,7 @@ public class Component extends JPanel implements Runnable {
     }
 
     public void CreatePolygon() {
-        polygon1 = new PolygonObject(new double[] { 10, 200, 10 }, new double[] { 5, 5, 5 }, Variables.RED);
+        polygon1 = new PolygonObject(new double[] { 10, 200, 10 }, new double[] { 5, 5, 5 }, RED);
 
         repaint();
         System.out.println("New 2D polygon is created.");
@@ -107,7 +108,7 @@ public class Component extends JPanel implements Runnable {
 
     public void CreateDPolygon() {
         DPolygon1 = new DPolygon(new double[] { 2, 4, 2 }, new double[] { 2, 4, 6 }, new double[] { 10, 200, 400 },
-                Variables.RED);
+                RED);
 
         repaint();
         System.out.println("New 3D polygon is created.");
@@ -142,10 +143,10 @@ public class Component extends JPanel implements Runnable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g); // Always call super.paintComponent first
 
-        drawResizedImage(g, Variables.wallpaper);
+        drawResizedImage(g, wallpaper);
 
         DPolygons[0].updateDPolygon();
-        g.setColor(Variables.GREEN);
+        g.setColor(GREEN);
         g.drawString(System.nanoTime() + "", 20, 20);
 
         // System.out.println("Number of polygons: " + numberOfPolygons);
@@ -162,23 +163,23 @@ public class Component extends JPanel implements Runnable {
 
     private void drawResizedImage(Graphics g, BufferedImage image) {
         // Update screen size to ensure it is current
-        Variables.updateScreenSize();
+        updateScreenSize();
     
         // Original image size
         int imageWidth = image.getWidth();
         int imageHeight = image.getHeight();
-        double panelAspect = (double) Variables.screenSize.getWidth() / Variables.screenSize.getHeight();
+        double panelAspect = (double) screenSize.getWidth() / screenSize.getHeight();
         double imageAspect = (double) imageWidth / imageHeight;
     
         int newWidth, newHeight;
     
         if (panelAspect > imageAspect) {
             // Panel is wider than the image, so scale the width to match the window's width
-            newWidth = (int) Variables.screenSize.getWidth();
+            newWidth = (int) screenSize.getWidth();
             newHeight = (int) (imageHeight * ((double) newWidth / imageWidth));
         } else {
             // Panel is taller than the image, so scale the height to match the window's height
-            newHeight = (int) Variables.screenSize.getHeight();
+            newHeight = (int) screenSize.getHeight();
             newWidth = (int) (imageWidth * ((double) newHeight / imageHeight));
         }
     

@@ -2,17 +2,20 @@ package objects;
 
 import java.awt.Color;
 import main.Calculator;
+import static main.Calculator.*;
+import static main.Component.*;
+import static main.Variables.*;
 
 public class DPolygon {
     Color color;
     double[] x, y, z;
     int polygon = 0;
-    int multiplier = 50; // temporary variable
+    int scaleMultiplier = 50; // temporary variable
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public DPolygon(double[] x, double[] y, double[] z, Color color) {
         // initialize a 3D polygon object
-        main.Component.numberOfDPolygons++;
+        numberOfDPolygons++;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -22,29 +25,34 @@ public class DPolygon {
     }
 
     public void createDPolygon() {
-        polygon = main.Component.numberOfPolygons;
-        main.Component.polygons[main.Component.numberOfPolygons] = new PolygonObject(new double[]{}, new double[]{}, color);
-        main.Component.polygons[polygon].averageDistance = getDistance();
-        
+        polygon = numberOfPolygons;
+        polygons[numberOfPolygons] = new PolygonObject(new double[] {}, new double[] {},
+                color);
+        polygons[polygon].averageDistance = getDistance();
+
         updateDPolygon();
     }
 
     public void updateDPolygon() {
+        double dx = CalculateObjectPositionX(cameraPosition, lookedPosition, lookedPosition[0], lookedPosition[1], lookedPosition[2]);
+        double dy = CalculateObjectPositionY(cameraPosition, lookedPosition, lookedPosition[0], lookedPosition[1], lookedPosition[2]);
         double[] newX = new double[x.length];
         double[] newY = new double[y.length];
 
         // calculate new coordinates of all objects
         for (int i = 0; i < x.length; i++) {
-            newX[i] = 500 + multiplier * Calculator.CalculateObjectPositionX(main.Component.cameraPosition,
-                    main.Component.lookedPosition, x[i], y[i], z[i]);
-            newY[i] = 500 + multiplier * Calculator.CalculateObjectPositionY(main.Component.cameraPosition,
-                    main.Component.lookedPosition, x[i], y[i], z[i]);
+            newX[i] = (int) (screenSize.getWidth() / 2)
+                    + scaleMultiplier * Calculator.CalculateObjectPositionX(cameraPosition,
+                            lookedPosition, x[i], y[i], z[i]);
+            newY[i] = (int) (screenSize.getHeight() / 2)
+                    + scaleMultiplier * Calculator.CalculateObjectPositionY(cameraPosition,
+                            lookedPosition, x[i], y[i], z[i]);
         }
 
         // the total number of polygons remain unchanged
-        main.Component.polygons[polygon] = new PolygonObject(newX, newY, color);
-        main.Component.polygons[polygon].averageDistance = getDistance();
-        main.Component.numberOfPolygons--;
+        polygons[polygon] = new PolygonObject(newX, newY, color);
+        polygons[polygon].averageDistance = getDistance();
+        numberOfPolygons--;
     }
 
     public double getDistance() {
@@ -58,8 +66,8 @@ public class DPolygon {
     }
 
     private double getDistanceToPoint(int i) {
-        return Math.sqrt((main.Component.cameraPosition[0] - x[i]) * (main.Component.cameraPosition[0] - x[i])
-                + (main.Component.cameraPosition[1] - y[i]) * (main.Component.cameraPosition[1] - y[i])
-                + (main.Component.cameraPosition[2] - z[i]) * (main.Component.cameraPosition[2] - z[i]));
+        return Math.sqrt((cameraPosition[0] - x[i]) * (cameraPosition[0] - x[i])
+                + (cameraPosition[1] - y[i]) * (cameraPosition[1] - y[i])
+                + (cameraPosition[2] - z[i]) * (cameraPosition[2] - z[i]));
     }
 }

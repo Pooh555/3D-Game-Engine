@@ -3,6 +3,8 @@ package objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
+import static main.Component.*;
+import static main.Variables.*;
 
 public class PolygonObject {
     public Polygon P = new Polygon();
@@ -16,13 +18,13 @@ public class PolygonObject {
         
         this.color = color;
 
-        main.Component.numberOfPolygons++;
+        numberOfPolygons++;
     }
 
     public void drawPolygon(Graphics g) {
         g.setColor(color); // set the polygon color
         g.fillPolygon(P);
-        g.setColor(main.Variables.WHITE);
+        g.setColor(WHITE);
         g.drawPolygon(P); // draw the polygon object
     }
 }
