@@ -10,8 +10,8 @@ public class Variables {
     // program system
     private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private static Dimension panelSize = window.getContentPane().getSize();
-    public static int WIDTH = 960; // window's width
-    public static int HEIGHT = 540; // window's height
+    public static final int INITIAL_WIDTH = 960; // window's width
+    public static final int INITIAL_HEIGHT = 540; // window's height
     public static final int FPS = 2160; // frames per second
     public static final double TICK_INTERVAL = 1000000000 / FPS; // in nanosecond
     public static double lastRefresh = 0; // difference between the last tick and the current time
