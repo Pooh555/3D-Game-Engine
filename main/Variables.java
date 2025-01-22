@@ -28,7 +28,7 @@ public class Variables {
     public static final Color PURPLE = new Color(0, 255, 255);
 
     // wallpaper
-    public static String wallpaperPath = "/res/wallpapers/your_name_1.jpg";
+    public static String wallpaperPath = "/res/wallpapers/girl_view_earth_from_space.jpg";
     public static BufferedImage wallpaper;
 
     public static void updateScreenSize() {

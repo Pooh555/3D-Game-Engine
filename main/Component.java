@@ -1,7 +1,9 @@
 package main;
 
+import java.awt.AlphaComposite;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -159,10 +161,10 @@ public class Component extends JPanel implements Runnable {
     }   
 
     private void drawResizedImage(Graphics g, BufferedImage image) {
-        // update screen size to ensure it is current
+        // Update screen size to ensure it is current
         Variables.updateScreenSize();
-        
-        // original image size
+    
+        // Original image size
         int imageWidth = image.getWidth();
         int imageHeight = image.getHeight();
         double panelAspect = (double) Variables.screenSize.getWidth() / Variables.screenSize.getHeight();
@@ -180,10 +182,17 @@ public class Component extends JPanel implements Runnable {
             newWidth = (int) (imageWidth * ((double) newHeight / imageHeight));
         }
     
-        // Draw the resized image to fit the entire panel
-        g.drawImage(image, 0, 0, newWidth, newHeight, this);
+        // cast Graphics to Graphics2D to enable advanced drawing options
+        Graphics2D g2d = (Graphics2D) g;
+    
+        // original composite
+        java.awt.Composite originalComposite = g2d.getComposite();
+    
+        // set the opacity (dim level, 0.0f = fully transparent, 1.0f = fully opaque)
+        float opacity = 0.25f;
+
+        g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+        g2d.drawImage(image, 0, 0, newWidth, newHeight, this);
+        g2d.setComposite(originalComposite);
     }
-    
-    
-    
 }
