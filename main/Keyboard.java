@@ -62,7 +62,7 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key pressed: " + KeyEvent.getKeyText(keyCode));
+        // System.out.println("Key pressed: " + KeyEvent.getKeyText(keyCode));
 
         switch (keyCode) {
             case KeyEvent.VK_UP -> keys[0] = true; // Move up
@@ -79,7 +79,7 @@ public class Keyboard implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("Key released: " + KeyEvent.getKeyText(keyCode));
+        // System.out.println("Key released: " + KeyEvent.getKeyText(keyCode));
 
         switch (keyCode) {
             case KeyEvent.VK_UP -> keys[0] = false; // Move up
