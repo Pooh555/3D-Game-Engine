@@ -11,6 +11,10 @@ public class Component extends JPanel implements Runnable {
     public static Dimension windowSize = new Dimension(Variables.WIDTH, Variables.HEIGHT); // window size
     Thread mainThread; // main game thread
 
+    // devices
+    Mouse mouse = new Mouse(); // new mouse instance
+    Keyboard keyboard = new Keyboard(); // new keyboard instance
+
     // program mechanism
     public static double[] cameraPosition = Variables.INITIAL_CAMERA_POSITION;
     public static double[] lookedPosition = Variables.INITIAL_LOOKED_POSITION;
@@ -48,9 +52,18 @@ public class Component extends JPanel implements Runnable {
     }
 
     public Component() {
-        setPreferredSize(windowSize); // set initial window size
-        setBackground(Variables.BLACK); // set initial window background color
+        setPreferredSize(windowSize); 
+        setBackground(Variables.BLACK);
         System.out.println("Components are set.");
+
+        addMouseMotionListener(mouse);
+        addMouseListener(mouse);
+        System.out.println("A mouse is detected.");
+
+        addKeyListener(keyboard);
+        setFocusable(true); 
+        requestFocusInWindow(); 
+        System.out.println("A keyboard is detected.");
     }
 
     public void CreatePolygonObject() {
@@ -71,10 +84,11 @@ public class Component extends JPanel implements Runnable {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        dPolygon2.updateDPolygon();
         g.setColor(Variables.GREEN);
         g.drawString(System.nanoTime() + "", 20, 20);
 
-        System.out.println("Number of polygons: " + numberOfPolygons);
+        // System.out.println("Number of polygons: " + numberOfPolygons);
 
         for (int i = 0; i < numberOfPolygons; i++) {
             drawablePolygons[i].drawPolygonObject(g);
