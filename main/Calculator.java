@@ -15,6 +15,10 @@ public class Calculator {
         return drawY;
     }
 
+    public boolean isOnFrustum(double x, double y, double z) {
+        return false;
+    }
+
     public static void setValues(double[] cameraPosition, double[] lookedPosition, double x, double y, double z) {
         Vector viewToPoint = new Vector(x - cameraPosition[0], y - cameraPosition[1], z - cameraPosition[2]); // vector from the camera to the 3D point to project
         Vector viewVector = new Vector(lookedPosition[0] - cameraPosition[0], lookedPosition[1] - cameraPosition[1], lookedPosition[2] - cameraPosition[2]); // vector from the camera to the looked position
