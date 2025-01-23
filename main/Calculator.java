@@ -25,7 +25,7 @@ public class Calculator {
         Vector rotationVector = getRotationVector(cameraPosition, lookedPosition); // vector that compensates for the camera's orientation
         Vector abstractVector1 = viewVector.crossProduct(rotationVector); // vector that is perpendicular to both view vector and rotation vector and lies in the screen plane
         Vector abstractVector2 = viewVector.crossProduct(abstractVector1); // perpendicular to viewVector and orthogonal to abstractVector1
-
+        
         // computing projections point
         double t = ((viewVector.x * lookedPosition[0] + viewVector.y * lookedPosition[1] + viewVector.z * lookedPosition[2])
                     - (viewVector.x * cameraPosition[0] + viewVector.y * cameraPosition[1] + viewVector.z * cameraPosition[2]))

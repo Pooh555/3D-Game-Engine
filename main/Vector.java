@@ -14,6 +14,10 @@ public class Vector {
         }
     }
 
+    public Vector scale(double scalar) {
+        return new Vector(this.x * scalar, this.y * scalar, this.z * scalar);
+    }
+
     public Vector crossProduct(Vector v) {
         return new Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
     }
@@ -25,4 +29,14 @@ public class Vector {
     public double magnitude() {
         return Math.sqrt(x * x + y * y + z * z);
     }
+
+    public Vector add(Vector v) {
+        return new Vector(this.x + v.x, this.y + v.y, this.z + v.z);
+    }
+
+    public double[] toArray() {
+        return new double[]{x, y, z};
+    }
 }
+
+

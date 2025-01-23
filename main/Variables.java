@@ -6,10 +6,11 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import static main.Main.*;
 
+@SuppressWarnings("FieldMayBeFinal")
+
 public class Variables {
     // program system
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    @SuppressWarnings("FieldMayBeFinal")
     private static Dimension panelSize = window.getContentPane().getSize();
     public static final int INITIAL_WIDTH = 960; // window's width
     public static final int INITIAL_HEIGHT = 540; // window's height
@@ -19,8 +20,10 @@ public class Variables {
 
     // program mechanisms
     public static final double[] INITIAL_CAMERA_POSITION = new double[] { 10, 10, 10 };
-    public static final double[] INITIAL_LOOKED_POSITION = new double[] { 1, 1, 1.5 };
+    public static final double[] INITIAL_LOOKED_POSITION = new double[] { 1, 1, 1 };
     public static final int SENSITIVITY = 5; // 0: lowest, 10: higher
+    public static final double NEAR_PLANE_DISTANCE = 1;
+    public static final double FAR_PLANE_DISTANCE = 100;
 
     // colors
     public static final Color BLACK = new Color(0, 0, 0);
